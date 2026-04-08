@@ -4,6 +4,6 @@
     ],
 
     "cucumber.glue": [
-        "features/step-definitions/**/*.ts"
+        "src/step-definitions/**/*.ts"
     ]
 }
