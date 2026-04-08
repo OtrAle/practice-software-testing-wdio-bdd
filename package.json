@@ -1,0 +1,18 @@
+{
+  "name": "module-12-bdd-cucumber",
+  "version": "1.0.0",
+  "description": "BDD - E2E automation suite for Browse Products functionality on Practice Software Testing",
+  "repository": {
+    "type": "git",
+    "url": "git@git.epam.com:laura_hernandez1/epam-specialization-module-12-bdd.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.2"
+  }
+}
