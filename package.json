@@ -1,28 +1,53 @@
 {
-  "name": "module-12-bdd-cucumber",
-  "version": "1.0.0",
-  "description": "BDD - E2E automation suite for Browse Products functionality on Practice Software Testing",
-  "repository": {
-    "type": "git",
-    "url": "git@git.epam.com:laura_hernandez1/epam-specialization-module-12-bdd.git"
-  },
-  "license": "ISC",
-  "author": "",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "wdio": "wdio run ./src/config/wdio.conf.ts"
-  },
-  "devDependencies": {
-    "@types/node": "^25.5.2",
-    "@wdio/cli": "^9.27.0",
-    "@wdio/cucumber-framework": "^9.27.0",
-    "@wdio/globals": "^9.27.0",
-    "@wdio/local-runner": "^9.27.0",
-    "@wdio/spec-reporter": "^9.27.0",
-    "@wdio/types": "^9.27.0",
-    "expect-webdriverio": "^5.6.5",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
-  }
+	"name": "module-12-bdd-cucumber",
+	"version": "1.0.0",
+	"description": "BDD - E2E automation suite for Browse Products functionality on Practice Software Testing",
+	"repository": {
+		"type": "git",
+		"url": "git@git.epam.com:laura_hernandez1/epam-specialization-module-12-bdd.git"
+	},
+	"license": "ISC",
+	"author": "",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"wdio": "wdio run ./src/config/wdio.conf.ts",
+		"format:fix": "prettier --write .",
+		"format": "prettier --check .",
+		"lint": "eslint src/",
+		"lint:fix": "eslint src/ --fix",
+		"prepare": "husky",
+		"typecheck": "tsc --noEmit --skipLibCheck"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@types/node": "^25.5.2",
+		"@wdio/cli": "^9.27.0",
+		"@wdio/cucumber-framework": "^9.27.0",
+		"@wdio/globals": "^9.27.0",
+		"@wdio/local-runner": "^9.27.0",
+		"@wdio/spec-reporter": "^9.27.0",
+		"@wdio/types": "^9.27.0",
+		"eslint": "^10.2.0",
+		"expect-webdriverio": "^5.6.5",
+		"globals": "^17.4.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.4.0",
+		"prettier": "^3.8.1",
+		"tsx": "^4.21.0",
+		"typescript": "^6.0.2",
+		"typescript-eslint": "^8.58.1"
+	},
+	"dependencies": {
+		"eslint-config-prettier": "^10.1.8"
+	},
+	"lint-staged": {
+		"*.ts": [
+			"prettier --write",
+			"eslint --fix"
+		],
+		"*.{json,md,mjs}": [
+			"prettier --write"
+		]
+	}
 }
