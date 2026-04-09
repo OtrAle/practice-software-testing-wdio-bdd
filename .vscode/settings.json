@@ -1,5 +1,9 @@
 {
 	"cucumber.features": ["features/**/*.feature"],
 
-	"cucumber.glue": ["src/step-definitions/**/*.ts"]
+	"cucumber.glue": ["src/step-definitions/**/*.ts"],
+	 "[cucumber]": {
+    "editor.formatOnSave": false
+  }
+	
 }
