@@ -30,7 +30,7 @@ class CatalogPage extends Page {
 		return Navbar;
 	}
 
-	async open() {
+	async open(): Promise<void> {
 		await super.open("/");
 		await this.grid.container.waitForDisplayed();
 	}

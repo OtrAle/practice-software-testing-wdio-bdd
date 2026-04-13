@@ -19,7 +19,7 @@ class Pagination {
 		return $(`[aria-label="Page-${number}"]`);
 	}
 
-	async clickArrow(arrow: "next" | "previous") {
+	async clickArrow(arrow: "next" | "previous"): Promise<void> {
 		await (arrow === "next" ? this.nextButton : this.prevButton).click();
 	}
 }

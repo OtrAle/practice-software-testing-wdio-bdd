@@ -11,7 +11,7 @@ class Search {
 		return $('[data-test="search-reset"]');
 	}
 
-	async searchFor(term: string) {
+	async searchFor(term: string): Promise<void> {
 		await this.searchInput.setValue(term);
 		await this.searchSubmit.click();
 	}

@@ -34,11 +34,10 @@ class PriceSlider {
 			this.getHandleValue(this.handleMin),
 			this.getHandleValue(this.handleMax),
 		]);
-
 		return { min: Number(min), max: Number(max) };
 	}
 
-	async getHandleValue(handle: ChainablePromiseElement) {
+	async getHandleValue(handle: ChainablePromiseElement): Promise<number> {
 		return Number(await handle.getAttribute("aria-valuenow"));
 	}
 }

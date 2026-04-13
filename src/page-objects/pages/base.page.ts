@@ -3,7 +3,7 @@ export default class Page {
 		return browser.url(path);
 	}
 
-	async getCurrentPath() {
+	async getCurrentPath(): Promise<string> {
 		const url = await browser.getUrl();
 		return new URL(url).pathname;
 	}

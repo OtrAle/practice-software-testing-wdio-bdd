@@ -47,19 +47,19 @@ class ProductGrid {
 		return card.$('[data-test="co2-rating-badge"]');
 	}
 
-	async getProductId(index = 0) {
+	async getProductId(index = 0): Promise<string | null> {
 		const cards = await this.productCards;
 		return await cards[index].getAttribute("data-test");
 	}
 
-	async waitUntilFirstProductChangesFrom(previousId: string) {
+	async waitUntilFirstProductChangesFrom(previousId: string): Promise<void> {
 		await browser.waitUntil(async () => {
 			const currentId = await this.getProductId();
 			return currentId !== previousId;
 		});
 	}
 
-	async getProductPriceAsNumber(card: WebdriverIO.Element) {
+	async getProductPriceAsNumber(card: WebdriverIO.Element): Promise<number> {
 		const priceText = await this.getProductPrice(card).getText();
 		return parseFloat(priceText.replace(/[^0-9.]/g, ""));
 	}

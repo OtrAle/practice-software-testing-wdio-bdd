@@ -4,11 +4,15 @@ class Navbar {
 	}
 
 	categoryOption(name: string) {
-		return $(`[data-test="nav-${name.toLowerCase().replace(" ", "-")}"]`);
+		return $(`[data-test="nav-${this.toSlug(name)}"]`);
 	}
 
-	categoryPath(name: string) {
-		return `/category/${name.toLowerCase().replace(" ", "-")}`;
+	categoryPath(name: string): string {
+		return `/category/${this.toSlug(name)}`;
+	}
+
+	private toSlug(name: string): string {
+		return name.toLowerCase().replace(/ /g, "-");
 	}
 }
 
