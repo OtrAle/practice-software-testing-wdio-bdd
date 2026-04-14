@@ -3,6 +3,7 @@ Feature: Browse products
   filtering, sorting and navigating through pages.
   # GRID
 
+  @done
   Scenario: UC-1 Grid: Display products in the catalog
     Given the customer is on the products page
     When the product grid container is displayed
@@ -13,21 +14,23 @@ Feature: Browse products
     And each product should display CO2 rating
   # SIDEBAR - SORT
 
+  @done
   Scenario Outline: UC-2 Sidebar | Sort: Arrange products by different criteria
     Given the customer is on the products page
     When the customer sorts the products by "<sort_option>"
     Then the products should be displayed in "<sort_order>" order
 
     Examples:
-      | sort_option    | sort_order         |
-      | name,asc       | alphabetical A-Z   |
-      | name,desc      | alphabetical Z-A   |
-      | price,desc     | price descending   |
-      | price,asc      | price ascending    |
-      | co2_rating,asc | CO2 efficiency A-E |
-      | o2_rating,desc | CO2 efficiency E-A |
+      | sort_option     | sort_order         |
+      | name,asc        | alphabetical A-Z   |
+      | name,desc       | alphabetical Z-A   |
+      | price,desc      | price descending   |
+      | price,asc       | price ascending    |
+      | co2_rating,asc  | CO2 efficiency A-E |
+      | co2_rating,desc | CO2 efficiency E-A |
   # SIDEBAR - PRICE RANGE
 
+  @done
   Scenario Outline: UC-3 Sidebar | Price Range: Filter by minimum and maximum price limits
     Given the customer is on the products page
     When the customer sets the price slider from <min> to <max>
@@ -41,10 +44,11 @@ Feature: Browse products
       |   1 | 199 | Just inside boundaries |
       |  40 | 160 | Mid-Range              |
 
+  @done
   Scenario: UC-4 Sidebar | Price Range: Verify "No results" state for out-of-bounds prices
     Given the customer is on the products page
-    When the customer sets the price slider from 1 to 3
-    Then the price labels should display the range 1 to 3
+    When the customer sets the price slider from 100 to 100
+    Then the price labels should display the range 100 to 100
     And no results should be shown
   # SIDEBAR - SEARCH
 
@@ -115,6 +119,7 @@ Feature: Browse products
       And the product grid should be reset to show all products
   # SIDEBAR - FILTERS
 
+    @done
     Scenario Outline: UC-10 Sidebar | Filters: Select independent filters for <filter_group>
       Given the customer is on the products page
       When the customer selects the "<value>" checkbox from the "<filter_group>" section
@@ -122,11 +127,12 @@ Feature: Browse products
       And the product grid should display all items belonging to "<value>"
 
       Examples:
-        | filter_group | value     |
-        | By Brand     | ForgeFlex |
-        | By Category  | Hammer    |
+        | filter_group | value           |
+        | By Brand     | ForgeFlex Tools |
+        | By Category  | Hammer          |
 
-    Scenario Outline: UC-11 Sidebar | Category: Sync selection between parent and subcategories
+    @done
+    Scenario Outline: UC-11 Sidebar | Filters: Sync selection between parent and subcategories
       Given the customer is on the products page
       When the customer selects the "<value>" checkbox from the "<filter_group>" section
       Then the "<value>" checkbox should be marked as selected
