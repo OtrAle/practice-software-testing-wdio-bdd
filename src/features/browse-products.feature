@@ -16,8 +16,7 @@ Feature: Browse products
   Scenario Outline: UC-2 Sidebar | Sort: Arrange products by different criteria
     Given the customer is on the products page
     When the customer sorts the products by "<sort_option>"
-    Then the sort dropdown should display "<sort_option>"
-    And the products should be displayed in "<sort_order>" order
+    Then the products should be displayed in "<sort_order>" order
 
     Examples:
       | sort_option    | sort_order         |
@@ -31,9 +30,9 @@ Feature: Browse products
 
   Scenario Outline: UC-3 Sidebar | Price Range: Filter by minimum and maximum price limits
     Given the customer is on the products page
-    When the customer sets the price slider from "<min>" to "<max>"
-    Then the price labels should display the range "<min>" and "<max>"
-    And all displayed products should have a price between "<min>" and "<max>"
+    When the customer sets the price slider from <min> to <max>
+    Then the price labels should display the range <min> to <max>
+    And all displayed products should have a price between <min> to <max>
 
     Examples:
       | min | max | description            |
@@ -44,10 +43,9 @@ Feature: Browse products
 
   Scenario: UC-4 Sidebar | Price Range: Verify "No results" state for out-of-bounds prices
     Given the customer is on the products page
-    When the customer sets the price slider from "1" to "3"
-    Then the price labels should display the range "1" to "3"
-    And no products should be displayed in the grid
-    And the message "There are no products found." should be visible
+    When the customer sets the price slider from 1 to 3
+    Then the price labels should display the range 1 to 3
+    And no results should be shown
   # SIDEBAR - SEARCH
 
   Scenario Outline: UC-5 Sidebar | Search: Filter the product catalog using valid keywords

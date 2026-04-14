@@ -27,7 +27,7 @@ class ProductGrid {
 		return card.$('[data-test="product-name"]');
 	}
 
-	getProductPrice(card: WebdriverIO.Element) {
+	getProductPrice(card: ChainablePromiseElement) {
 		return card.$('[data-test="product-price"]');
 	}
 
@@ -51,7 +51,7 @@ class ProductGrid {
 		});
 	}
 
-	async getProductPriceAsNumber(card: WebdriverIO.Element): Promise<number> {
+	async getProductPriceAsNumber(card: ChainablePromiseElement): Promise<number> {
 		const priceText = await this.getProductPrice(card).getText();
 		return parseFloat(priceText.replace(/[^0-9.]/g, ""));
 	}
