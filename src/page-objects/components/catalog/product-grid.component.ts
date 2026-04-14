@@ -27,7 +27,7 @@ class ProductGrid {
 		return card.$('[data-test="product-name"]');
 	}
 
-	getProductPrice(card: ChainablePromiseElement) {
+	getProductPrice(card: WebdriverIO.Element) {
 		return card.$('[data-test="product-price"]');
 	}
 
@@ -51,12 +51,12 @@ class ProductGrid {
 		});
 	}
 
-	async getProductPriceAsNumber(card: ChainablePromiseElement): Promise<number> {
+	async getProductPriceAsNumber(card: WebdriverIO.Element): Promise<number> {
 		const priceText = await this.getProductPrice(card).getText();
 		return parseFloat(priceText.replace(/[^0-9.]/g, ""));
 	}
 
-	async getCompletedProducts(type: "sorting" | "filter" | "search"): Promise<ChainablePromiseArray> {
+	async getCompletedProducts(type: "sorting" | "filter" | "search") {
 		await this.completedIndicator(type).waitForExist();
 		return this.productCards;
 	}
