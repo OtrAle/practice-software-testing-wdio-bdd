@@ -11,16 +11,8 @@ class ProductGrid {
 		return $('[data-test="no-results"]');
 	}
 
-	get sortingCompleted() {
-		return $('[data-test="sorting_completed"]');
-	}
-
-	get filterCompleted() {
-		return $('[data-test="filter_completed"]');
-	}
-
-	get searchCompleted() {
-		return $('[data-test="search_completed"]');
+	completedIndicator(type: "sorting" | "filter" | "search") {
+		return $(`[data-test="${type}_completed"]`);
 	}
 
 	get pageTitle() {
@@ -48,7 +40,7 @@ class ProductGrid {
 	}
 
 	async getProductId(index = 0): Promise<string | null> {
-		const cards = await this.productCards;
+		const cards = this.productCards;
 		return await cards[index].getAttribute("data-test");
 	}
 
@@ -62,6 +54,11 @@ class ProductGrid {
 	async getProductPriceAsNumber(card: WebdriverIO.Element): Promise<number> {
 		const priceText = await this.getProductPrice(card).getText();
 		return parseFloat(priceText.replace(/[^0-9.]/g, ""));
+	}
+
+	async getCompletedProducts(type: "sorting" | "filter" | "search"): Promise<ChainablePromiseArray> {
+		await this.completedIndicator(type).waitForExist();
+		return this.productCards;
 	}
 }
 

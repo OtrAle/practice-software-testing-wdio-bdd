@@ -24,6 +24,12 @@ export default defineConfig([
 			"no-constant-condition": "error",
 			"no-dupe-keys": "error",
 			eqeqeq: "error",
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					argsIgnorePattern: "^_",
+				},
+			],
 		},
 	},
 	tseslint.configs.recommended,

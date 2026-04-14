@@ -30,10 +30,7 @@ class PriceSlider {
 	}
 
 	async getRange() {
-		const [min, max] = await Promise.all([
-			this.getHandleValue(this.handleMin),
-			this.getHandleValue(this.handleMax),
-		]);
+		const [min, max] = await Promise.all([this.getHandleValue(this.handleMin), this.getHandleValue(this.handleMax)]);
 		return { min: Number(min), max: Number(max) };
 	}
 
