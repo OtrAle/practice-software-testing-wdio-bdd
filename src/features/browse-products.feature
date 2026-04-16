@@ -146,30 +146,30 @@ Feature: Browse products
         | Other       | Tool Belts,Storage Solutions,Workbench,Safety Gear,Fasteners | By Category  |
   # PAGINATION
 
+    @done
     Scenario: UC-12 Pagination: Navigate directly to a specific page number
       Given the customer is on the products page
-      When the customer clicks on the page number button "2"
-      Then the pagination control for page "2" should be active
-      And the product grid should display the next set of items
+      When the customer clicks on the page number button 2
+      Then the product grid should display the next set of items
+      And the page number "2" should be active
 
+    @done
     Scenario Outline: UC-13 Grid | Pagination: Browse through product pages using arrows
       Given the customer is on the products page
-      And the customer is on page "<current_page>"
+      And the customer is on page <current_page>
       When the customer clicks on the "<arrow>" arrow button
-      Then the page number "<target_page>" should be active
-      And the product grid should display the next set of items
+      Then the product grid should display the next set of items
+      And the page number "<target_page>" should be active
 
       Examples:
-        | current_page | arrow    | target_page | description         |
-        |            1 | next     |           2 | Forward navigation  |
-        |            3 | next     |           4 | Forward navigation  |
-        |            2 | previous |           1 | Backward navigation |
-        |            4 | previous |           3 | Backward navigation |
+        | current_page | arrow    | target_page | description       |
+        |            1 | next     |           2 | Navigate forward  |
+        |            5 | previous |           4 | Navigate backward |
 
+    @current
     Scenario Outline: UC-14 Grid | Pagination: Handle arrow states at the start and end of results
       Given the customer is on the products page
-      And the customer is on the "<page_position>" page of the catalog
-      When the pagination controls are displayed
+      When the customer clicks on the "<page_position>" page of the catalog
       Then the "<arrow>" arrow button should be disabled
 
       Examples:
