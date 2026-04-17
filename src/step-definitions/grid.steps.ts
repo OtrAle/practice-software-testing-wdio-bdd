@@ -36,3 +36,6 @@ Then("each product should display CO2 rating", async () => {
 		await expect(CatalogPage.grid.getProductCO2(card)).toBeDisplayed();
 	}
 });
+Then("the header shown is {string}", async (category: string) => {
+	await expect(CatalogPage.grid.pageTitle).toHaveText(`Category: ${category}`);
+});

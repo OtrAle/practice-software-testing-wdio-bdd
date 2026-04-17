@@ -25,3 +25,15 @@ Then("all {string} under {string} should be automatically selected", async (subc
 Then("the {string} checkbox should be unselected", async (value: string) => {
 	await expect(CatalogPage.filters.filterCheckbox(value)).not.toBeChecked();
 });
+
+Then(
+	"the sidebar should only show the related filters to {string} with {string}",
+	async (_category: string, subcategories: string) => {
+		const subcategoryList = subcategories.split(",");
+		for (const subcategory of subcategoryList) {
+			await expect(CatalogPage.filters.filterCheckbox(subcategory)).toExist();
+		}
+		const visibleCheckboxes = CatalogPage.filters.visibleCheckboxes;
+		await expect(visibleCheckboxes).toBeElementsArrayOfSize(subcategoryList.length + 1);
+	},
+);

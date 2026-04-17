@@ -103,7 +103,7 @@ Feature: Browse products
       Then the search results header should display "Hammer"
       And the "ForgeFlex Tools" checkbox should be unselected
 
-    @current
+    @done
     Scenario: UC-9 Sidebar | Search: Restore the original product view by clearing the search
       Given the customer is on the products page
       And the customer searches for "Hammer"
@@ -171,15 +171,16 @@ Feature: Browse products
         | last          | next     |
   # NAV. BAR - CATEGORIES
 
+    @current
     Scenario Outline: UC-15 Nav. Bar | Categories: Verify product results when selecting a category
       Given the customer is on the products page
       When the customer selects "<category>" from the "Categories" navigation dropdown
-      Then the header shown is "Category: <category>"
-      And the products shown should belong to "<category>"
-      And the side menu in "By Category" should only show the related filters for "<category>"
+      Then the customer should be on the "<category>" page
+      And the header shown is "<category>"
+      And the sidebar should only show the related filters to "<category>" with "<subcategories>"
 
       Examples:
-        | category    |
-        | Hand Tools  |
-        | Power Tools |
-        | Other       |
+        | category    | subcategories                                                |
+        | Hand Tools  | Hammer,Hand Saw,Wrench,Screwdriver,Pliers,Chisels,Measures   |
+        | Power Tools | Grinder,Sander,Saw,Drill                                     |
+        | Other       | Tool Belts,Storage Solutions,Workbench,Safety Gear,Fasteners |
