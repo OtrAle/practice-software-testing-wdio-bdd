@@ -3,7 +3,7 @@
 
 	"cucumber.glue": ["src/step-definitions/**/*.ts"],
 	 "[cucumber]": {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": false
   }
 	
 }
