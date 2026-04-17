@@ -21,3 +21,7 @@ Then("all {string} under {string} should be automatically selected", async (subc
 		await expect(CatalogPage.filters.filterCheckbox(subcategory)).toBeChecked();
 	}
 });
+
+Then("the {string} checkbox should be unselected", async (value: string) => {
+	await expect(CatalogPage.filters.filterCheckbox(value)).not.toBeChecked();
+});

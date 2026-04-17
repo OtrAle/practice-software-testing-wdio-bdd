@@ -6,10 +6,6 @@ class Filters {
 	get visibleCheckboxes() {
 		return $$('input.icheck[name="category_id"]');
 	}
-
-	get ecoFriendlyFilter() {
-		return $('[data-test="eco-friendly-filter"]');
-	}
 }
 
 export default new Filters();

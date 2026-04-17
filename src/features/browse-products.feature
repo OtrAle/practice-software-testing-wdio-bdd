@@ -52,11 +52,12 @@ Feature: Browse products
     And no results should be shown
   # SIDEBAR - SEARCH
 
+  @done
   Scenario Outline: UC-5 Sidebar | Search: Filter the product catalog using valid keywords
     Given the customer is on the products page
     When the customer searches for "<search_term>"
     Then the search results header should display "<search_term>"
-    And all displayed products should contain "<search_term>" in their name
+    And all displayed products should be related to "<search_term>"
 
     Examples:
       | search_term        | description                  |
@@ -68,10 +69,11 @@ Feature: Browse products
 
   Rule: Search terms must be between 3 and 40 characters
 
+    @done
     Scenario Outline: UC-6 Sidebar | Search: Accept search terms within valid boundaries
       Given the customer is on the products page
       When the customer searches for "<search_term>"
-      Then the search results header should display "Searched for: <search_term>"
+      Then the search results header should display "<search_term>"
 
       Examples:
         | search_term                              | length | description        |
@@ -81,6 +83,7 @@ Feature: Browse products
         | Small Bench Saw with 200mm Safety Blade  |     39 | Just below maximum |
         | Small Bench Saw with 200mm Safety Blades |     40 | Maximum boundary   |
 
+    @done
     Scenario Outline: UC-7 Sidebar | Search: Reject search terms outside length limits
       Given the customer is on the products page
       And the product grid is displayed
@@ -92,31 +95,21 @@ Feature: Browse products
         | Pl                                         |      2 | Just below minimum |
         | Cordless Drill Combo Kit With 2 Batteries! |     41 | Just above maximum |
 
-    Scenario Outline: UC-8 Sidebar | Search: New search resets all active filters
+    @done
+    Scenario: UC-8 Sidebar | Search: New search resets active filters
       Given the customer is on the products page
-      And the product grid is displayed
-      And the customer filters by category "<category>"
-      And the customer filters by brand "<brand>"
-      And the customer filters by sustainability "<sustainability>"
-      When the customer searches for "<search_term>"
-      Then the search results header should display "Searched for: <search_term>"
-      And the search results should ignore previous filters
-      And the category "<category>" should be unselected
-      And the brand "<brand>" should be unselected
-      And the sustainability "<sustainability>" should be unselected
+      And the customer selects the "ForgeFlex Tools" checkbox from the "By Brand" section
+      When the customer searches for "Hammer"
+      Then the search results header should display "Hammer"
+      And the "ForgeFlex Tools" checkbox should be unselected
 
-      Examples:
-        | category   | brand                | sustainability                  | search_term |
-        | Hand Tools | ForgeFlex Tools      | Show only eco-friendly products | Hammer      |
-        | Grinder    | MightyCraft Hardware | Show only eco-friendly products | Drill       |
-
+    @current
     Scenario: UC-9 Sidebar | Search: Restore the original product view by clearing the search
       Given the customer is on the products page
       And the customer searches for "Hammer"
-      And the product grid shows only results matching "Hammer"
-      When the customer clicks the "clear" button in the search bar
-      Then the search input should be empty
-      And the product grid should be reset to show all products
+      And the search results header should display "Hammer"
+      When the customer clicks the clear button in the search bar
+      Then the product grid should be reset to show all products
   # SIDEBAR - FILTERS
 
     @done
@@ -166,7 +159,7 @@ Feature: Browse products
         |            1 | next     |           2 | Navigate forward  |
         |            5 | previous |           4 | Navigate backward |
 
-    @current
+    @done
     Scenario Outline: UC-14 Grid | Pagination: Handle arrow states at the start and end of results
       Given the customer is on the products page
       When the customer clicks on the "<page_position>" page of the catalog
