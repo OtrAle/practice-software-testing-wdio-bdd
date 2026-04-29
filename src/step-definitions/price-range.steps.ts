@@ -18,5 +18,7 @@ Then("all displayed products should have a price between {int} to {int}", async 
 });
 
 Then("no results should be shown", async () => {
+	await CatalogPage.grid.noResults.waitForDisplayed();
+
 	await expect(CatalogPage.grid.noResults).toBeDisplayed();
 });

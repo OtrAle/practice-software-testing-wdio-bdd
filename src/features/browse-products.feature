@@ -56,8 +56,8 @@ Feature: Browse products
   @price-range @negative
   Scenario: UC-4 Sidebar | Price Range: No products found when price range has no matching results
     Given the customer is on the products page
-    When the customer sets the price slider from 100 to 100
-    Then the price labels should display the range 100 to 100
+    When the customer sets the price slider from 150 to 150
+    Then the price labels should display the range 150 to 150
       And no results should be shown
   
   # SIDEBAR - SEARCH
