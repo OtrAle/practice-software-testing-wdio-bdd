@@ -41,7 +41,7 @@ export const config: WebdriverIO.Config = {
 	],
 
 	cucumberOpts: {
-		require: ["./src/step-definitions/**/*.ts"],
+		require: ["./src/step-definitions/**/*.ts", "./src/support/hooks.ts"],
 		backtrace: false,
 		requireModule: [],
 		dryRun: false,
