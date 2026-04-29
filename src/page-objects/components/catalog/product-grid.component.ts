@@ -60,6 +60,21 @@ class ProductGrid {
 		await this.completedIndicator(type).waitForExist();
 		return this.productCards;
 	}
+
+	async getProductNamesFromGrid(): Promise<string[]> {
+		const cards = await this.productCards.getElements();
+		const names: string[] = [];
+		for (const card of cards) {
+			names.push(await this.getProductName(card).getText());
+		}
+		return names;
+	}
+
+	async getProductNamesFromApi(searchTerm: string): Promise<string[]> {
+		const response = await fetch(`https://api.practicesoftwaretesting.com/products/search?q=${searchTerm}`);
+		const data = await response.json();
+		return data.data.map((p: { name: string }) => p.name);
+	}
 }
 
 export default new ProductGrid();

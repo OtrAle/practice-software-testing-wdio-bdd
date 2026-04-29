@@ -12,10 +12,6 @@ Then("the {string} checkbox should be marked as selected", async (value: string)
 	await expect(CatalogPage.filters.filterCheckbox(value)).toBeChecked();
 });
 
-Then("the product grid should display all items belonging to {string}", async (_value: string) => {
-	await expect(await CatalogPage.grid.getCompletedProducts("filter")).toBeElementsArrayOfSize({ gte: 1 });
-});
-
 Then("all {string} under {string} should be automatically selected", async (subcategories: string, _value: string) => {
 	for (const subcategory of subcategories.split(",")) {
 		await expect(CatalogPage.filters.filterCheckbox(subcategory)).toBeChecked();
@@ -27,9 +23,9 @@ Then("the {string} checkbox should be unselected", async (value: string) => {
 });
 
 Then(
-	"the sidebar should only show the related filters to {string} with {string}",
+	"the sidebar should only show the related filters to {string}: {string}",
 	async (_category: string, subcategories: string) => {
-		const subcategoryList = subcategories.split(",");
+		const subcategoryList = subcategories.split(",").map((s) => s.trim());
 		for (const subcategory of subcategoryList) {
 			await expect(CatalogPage.filters.filterCheckbox(subcategory)).toExist();
 		}
@@ -37,3 +33,7 @@ Then(
 		await expect(visibleCheckboxes).toBeElementsArrayOfSize(subcategoryList.length + 1);
 	},
 );
+
+Then("the product grid should display all items belonging to {string}", async (_value: string) => {
+	await expect(await CatalogPage.grid.getCompletedProducts("filter")).toBeElementsArrayOfSize({ gte: 1 });
+});

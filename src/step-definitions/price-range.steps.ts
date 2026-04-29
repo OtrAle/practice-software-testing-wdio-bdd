@@ -16,9 +16,3 @@ Then("all displayed products should have a price between {int} to {int}", async 
 	const price = await CatalogPage.grid.getProductPriceAsNumber(cards[0]);
 	expect(price).toBeLessThanOrEqual(max);
 });
-
-Then("no results should be shown", async () => {
-	await CatalogPage.grid.noResults.waitForDisplayed();
-
-	await expect(CatalogPage.grid.noResults).toBeDisplayed();
-});

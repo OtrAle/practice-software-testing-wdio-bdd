@@ -97,7 +97,7 @@ Feature: Browse products
   @search @negative
   Scenario Outline: UC-7 Sidebar | Search: Reject search terms outside length limits
     Given the customer is on the products page
-      And the product grid is displayed
+      And the product grid container is displayed
     When the customer searches for "<search_term>"
     Then the product grid should not update results
 
@@ -192,14 +192,14 @@ Feature: Browse products
     When the customer selects "<category>" from the "Categories" navigation dropdown
     Then the customer should be on the "<category>" page
       And the header shown is "<category>"
-      And the sidebar should only show the related filters to "<category>" with "<subcategories>"
+      And the sidebar should only show the related filters to "<category>": "<subcategories>"
 
     @smoke
     Examples:
-      | category   | subcategories                                              |
-      | Hand Tools | Hammer,Hand Saw,Wrench,Screwdriver,Pliers,Chisels,Measures |
+      | category   | subcategories                                                    |
+      | Hand Tools | Hammer, Hand Saw, Wrench, Screwdriver, Pliers, Chisels, Measures |
 
     Examples:
-      | category    | subcategories                                                |
-      | Power Tools | Grinder,Sander,Saw,Drill                                     |
-      | Other       | Tool Belts,Storage Solutions,Workbench,Safety Gear,Fasteners |
+      | category    | subcategories                                                    |
+      | Power Tools | Grinder, Sander, Saw, Drill                                      |
+      | Other       | Tool Belts, Storage Solutions, Workbench, Safety Gear, Fasteners |
