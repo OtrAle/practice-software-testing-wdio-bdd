@@ -20,6 +20,9 @@ export const config: WebdriverIO.Config = {
 		},
 	],
 
+	specFileRetries: 1,
+	specFileRetriesDelay: 5,
+
 	logLevel: "error",
 	bail: 0,
 	baseUrl: "https://practicesoftwaretesting.com/",
