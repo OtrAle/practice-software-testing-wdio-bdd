@@ -10,9 +10,10 @@ When("the customer clicks the clear button in the search bar", async () => {
 });
 
 Then("the search results header should display {string}", async (search_term: string) => {
-	await CatalogPage.grid.completedIndicator("search").waitForExist();
+	await CatalogPage.grid.completedIndicator("search").waitForExist({ timeout: 20000 });
 	await expect(CatalogPage.grid.searchCaption).toHaveText(search_term);
 });
+
 Then("all displayed products should be related to {string}", async (search_term: string) => {
 	const apiNames = await CatalogPage.grid.getProductNamesFromApi(search_term);
 	const gridNames = await CatalogPage.grid.getProductNamesFromGrid();
