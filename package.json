@@ -1,10 +1,10 @@
 {
-	"name": "module-12-bdd-cucumber",
+	"name": "practice-sofware-testing-wdio-bdd",
 	"version": "1.0.0",
 	"description": "BDD - E2E automation suite for Browse Products functionality on Practice Software Testing",
 	"repository": {
 		"type": "git",
-		"url": "git@git.epam.com:laura_hernandez1/epam-specialization-module-12-bdd.git"
+		"url": "https://github.com/OtrAle/practice-software-testing-wdio-bdd.git"
 	},
 	"license": "ISC",
 	"author": "",
