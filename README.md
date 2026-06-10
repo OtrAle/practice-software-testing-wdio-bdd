@@ -1,4 +1,4 @@
-# Module 12 - BDD with Cucumber
+# BDD with Cucumber
 
 This repository contains an End-to-End (E2E) automation suite focused on testing the **Browse Products** functionality of the [Practice Software Testing application](https://practicesoftwaretesting.com/). It uses WebdriverIO with Cucumber and follows the **Page Object Model** structure for clarity and scalability.
 
@@ -21,7 +21,7 @@ This repository contains an End-to-End (E2E) automation suite focused on testing
 ## Installation
 
 ```bash
-git clone https://git.epam.com/laura_hernandez1/epam-specialization-module-12-bdd.git
+git clone https://github.com/OtrAle/bdd-cucumber-browse-feature-practice-software-testing
 npm install
 ```
 
