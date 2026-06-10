@@ -21,7 +21,7 @@ This repository contains an End-to-End (E2E) automation suite focused on testing
 ## Installation
 
 ```bash
-git clone https://github.com/OtrAle/bdd-cucumber-browse-feature-practice-software-testing
+git clone https://github.com/OtrAle/practice-software-testing-wdio-bdd
 npm install
 ```
 
