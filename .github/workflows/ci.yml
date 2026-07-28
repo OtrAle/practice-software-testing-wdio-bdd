@@ -58,10 +58,12 @@ jobs:
 
       - name: DEBUG - inspect actual app state after healthcheck
         run: |
-          echo "===== HTML returned by curl ====="
-          curl -s http://localhost:4200
-          echo "===== angular-ui container logs ====="
-          docker compose -f toolshop-app/docker-compose.yml logs angular-ui --tail=200
+          echo "===== API response: /api/products (via web:8091) ====="
+          curl -s -w "\nHTTP_STATUS:%{http_code}\n" http://localhost:8091/api/products
+          echo "===== API response: /api/categories (via web:8091) ====="
+          curl -s -w "\nHTTP_STATUS:%{http_code}\n" http://localhost:8091/api/categories
+          echo "===== mariadb container logs ====="
+          docker compose -f toolshop-app/docker-compose.yml logs mariadb --tail=100
           echo "===== laravel-api container logs ====="
           docker compose -f toolshop-app/docker-compose.yml logs laravel-api --tail=100
           echo "===== container status ====="
