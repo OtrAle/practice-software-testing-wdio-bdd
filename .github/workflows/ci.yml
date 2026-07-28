@@ -43,11 +43,26 @@ jobs:
         working-directory: toolshop-app
         run: docker compose -f docker-compose.yml up -d
 
+      - name: Run database migrations and seed
+        working-directory: toolshop-app
+        run: |
+          for i in $(seq 1 20); do
+            if docker compose -f docker-compose.yml exec -T laravel-api php artisan migrate:fresh --seed --force; then
+              echo "Migrations and seed completed"
+              exit 0
+            fi
+            echo "API/DB not ready yet, retrying in 5s... (${i}/20)"
+            sleep 5
+          done
+          echo "Migrations never succeeded"
+          docker compose -f docker-compose.yml logs mariadb laravel-api --tail=100
+          exit 1
+
       - name: Wait for Toolshop app to be ready
         run: |
-          for i in $(seq 1 90); do
-            if curl -sf http://localhost:4200 > /dev/null; then
-              echo "App is up after ${i} attempts"
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:8091/api/products | grep -q '"data"'; then
+              echo "API is serving product data after ${i} attempts"
               exit 0
             fi
             sleep 5
@@ -55,19 +70,6 @@ jobs:
           echo "App did not become ready in time"
           docker compose -f toolshop-app/docker-compose.yml logs
           exit 1
-
-      - name: DEBUG - inspect actual app state after healthcheck
-        run: |
-          echo "===== API response: /api/products (via web:8091) ====="
-          curl -s -w "\nHTTP_STATUS:%{http_code}\n" http://localhost:8091/api/products
-          echo "===== API response: /api/categories (via web:8091) ====="
-          curl -s -w "\nHTTP_STATUS:%{http_code}\n" http://localhost:8091/api/categories
-          echo "===== mariadb container logs ====="
-          docker compose -f toolshop-app/docker-compose.yml logs mariadb --tail=100
-          echo "===== laravel-api container logs ====="
-          docker compose -f toolshop-app/docker-compose.yml logs laravel-api --tail=100
-          echo "===== container status ====="
-          docker compose -f toolshop-app/docker-compose.yml ps
 
       - uses: actions/setup-node@v4
         with:
