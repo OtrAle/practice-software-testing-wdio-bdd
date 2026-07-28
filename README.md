@@ -12,7 +12,7 @@ This repository contains an End-to-End (E2E) automation suite focused on testing
 - **HTML Reports:** An HTML report is automatically generated in the `.tmp/report` folder after each test run, providing a visual summary of passed and failed tests.
 - **Test filtering by category:** - **Test filtering by tag:** Tests are organized by test type and by component, enabling targeted test execution.
 - **Code Quality Gates:** ESLint enforces code standards with custom rules, Prettier ensures consistent formatting, and Husky with lint-staged automatically runs both on staged files before each commit.
-- **Continuous Integration:** GitHub Actions runs lint, format, typecheck, and the smoke suite on every push and pull request; the HTML report from each run is available as a downloadable artifact from the [Actions tab](https://github.com/OtrAle/practice-software-testing-wdio-bdd/actions).
+- **Continuous Integration:** GitHub Actions runs lint, format, typecheck, and the smoke suite on every push and pull request; the HTML report from each run is available as a downloadable artifact from the [Actions tab](https://github.com/OtrAle/practice-software-testing-wdio-bdd/actions). To avoid flakiness caused by Cloudflare bot protection on the public site, the CI smoke suite runs against a disposable [Toolshop](https://github.com/testsmith-io/practice-software-testing) instance spun up with Docker Compose inside the pipeline, while local runs still target the live site by default.
 
 ## Requirements
 

@@ -27,8 +27,34 @@ jobs:
     name: Smoke E2E
     runs-on: ubuntu-latest
     needs: quality
+    env:
+      WDIO_BASE_URL: http://localhost:4200
+
     steps:
       - uses: actions/checkout@v4
+
+      - name: Checkout Toolshop app (test target)
+        uses: actions/checkout@v4
+        with:
+          repository: testsmith-io/practice-software-testing
+          path: toolshop-app
+
+      - name: Start Toolshop app
+        working-directory: toolshop-app
+        run: docker compose -f docker-compose.yml up -d
+
+      - name: Wait for Toolshop app to be ready
+        run: |
+          for i in $(seq 1 90); do
+            if curl -sf http://localhost:4200 > /dev/null; then
+              echo "App is up after ${i} attempts"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "App did not become ready in time"
+          docker compose -f toolshop-app/docker-compose.yml logs
+          exit 1
 
       - uses: actions/setup-node@v4
         with:
@@ -45,3 +71,8 @@ jobs:
           name: cucumber-html-report
           path: .tmp/report/
           retention-days: 7
+
+      - name: Stop Toolshop app
+        if: always()
+        working-directory: toolshop-app
+        run: docker compose -f docker-compose.yml down -v

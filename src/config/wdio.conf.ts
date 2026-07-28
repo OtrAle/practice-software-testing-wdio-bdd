@@ -27,7 +27,7 @@ export const config: WebdriverIO.Config = {
 
 	logLevel: "error",
 	bail: 0,
-	baseUrl: "https://practicesoftwaretesting.com/",
+	baseUrl: process.env.WDIO_BASE_URL ?? "https://practicesoftwaretesting.com/",
 
 	waitforTimeout: 10000,
 	connectionRetryTimeout: 120000,
