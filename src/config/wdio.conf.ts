@@ -15,7 +15,9 @@ export const config: WebdriverIO.Config = {
 		{
 			browserName: "chrome",
 			"goog:chromeOptions": {
-				args: ["--lang=en-US"],
+				args: process.env.CI
+					? ["--lang=en-US", "--headless=new", "--no-sandbox", "--disable-dev-shm-usage", "--disable-gpu"]
+					: ["--lang=en-US"],
 			},
 		},
 	],

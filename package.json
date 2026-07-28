@@ -9,6 +9,9 @@
 	"license": "ISC",
 	"author": "",
 	"type": "module",
+	"engines": {
+		"node": ">=25"
+	},
 	"scripts": {
 		"wdio": "wdio run ./src/config/wdio.conf.ts",
 		"format:fix": "prettier --write .",

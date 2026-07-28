@@ -1,5 +1,7 @@
 # BDD with Cucumber
 
+![CI](https://github.com/OtrAle/practice-software-testing-wdio-bdd/actions/workflows/ci.yml/badge.svg)
+
 This repository contains an End-to-End (E2E) automation suite focused on testing the **Browse Products** functionality of the [Practice Software Testing application](https://practicesoftwaretesting.com/). It uses WebdriverIO with Cucumber and follows the **Page Object Model** structure for clarity and scalability.
 
 ## Key Features
@@ -7,9 +9,10 @@ This repository contains an End-to-End (E2E) automation suite focused on testing
 - **Page Object Model (POM):** Maintains separation between UI elements and test logic, with reusable components for the sidebar, grid, pagination, and navbar.
 - **Component-based architecture:** Each UI section (filters, search, sort, price slider, pagination) has its own dedicated component class.
 - **Comprehensive catalog coverage:** Validates product display, sorting, filtering, search, pagination, price range, and category navigation.
-- **HTML Reports:** An HTML report is automatically generated in the /results folder after each test run, providing a visual summary of passed and failed tests.
+- **HTML Reports:** An HTML report is automatically generated in the `.tmp/report` folder after each test run, providing a visual summary of passed and failed tests.
 - **Test filtering by category:** - **Test filtering by tag:** Tests are organized by test type and by component, enabling targeted test execution.
 - **Code Quality Gates:** ESLint enforces code standards with custom rules, Prettier ensures consistent formatting, and Husky with lint-staged automatically runs both on staged files before each commit.
+- **Continuous Integration:** GitHub Actions runs lint, format, typecheck, and the smoke suite on every push and pull request; the HTML report from each run is available as a downloadable artifact from the [Actions tab](https://github.com/OtrAle/practice-software-testing-wdio-bdd/actions).
 
 ## Requirements
 
