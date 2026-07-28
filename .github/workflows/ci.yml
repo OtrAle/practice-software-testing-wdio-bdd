@@ -88,6 +88,14 @@ jobs:
           docker compose -f toolshop-app/docker-compose.yml logs
           exit 1
 
+      - name: DEBUG - check what API URL the frontend bundle calls
+        run: |
+          echo "===== Direct check of /api/products via web:8091 ====="
+          curl -s -w "\nHTTP_STATUS:%{http_code}\n" http://localhost:8091/api/products | head -c 1000
+          echo "===== Searching main.js for any hardcoded API host ====="
+          curl -s http://localhost:4200/main.js -o /tmp/main.js
+          grep -o 'https\?://[a-zA-Z0-9.-]*' /tmp/main.js | sort -u | head -50
+
       - uses: actions/setup-node@v4
         with:
           node-version: "25"
